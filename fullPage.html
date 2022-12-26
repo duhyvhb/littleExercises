@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      background-color: pink;
+    }
+    div:nth-child(2n) {
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <script>
+    const $ = s => document.querySelector(s)
+    const $$ = s => document.querySelectorAll(s)
+    $$('div').forEach($item => {
+      $item.style.height = window.innerHeight + 'px'
+    })
+    window.addEventListener('resize', function() {
+      $$('div').forEach($item => {
+        $item.style.height = window.innerHeight + 'px'
+      })
+    })
+    window.addEventListener('keydown', function(e) {
+      switch(e.key) {
+        case 'ArrowDown':
+          e.preventDefault()
+          window.scrollBy({
+            top: window.innerHeight,
+            left: 0,
+            behavior: 'smooth'
+          });
+          break;
+        case 'ArrowUp':
+          e.preventDefault()
+          window.scrollBy({
+            top: -window.innerHeight,
+            left: 0,
+            behavior: 'smooth'
+          });
+          break;
+      }
+    })
+  </script>
+</body>
+</html>
