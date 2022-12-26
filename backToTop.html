@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Back to top Ex</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    div {
+      margin: 0 auto;
+      height: 300px;
+      background-color: pink;
+    }
+
+    div:nth-child(2n) {
+      background-color: skyblue;
+    }
+
+    #btn-back {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      display: none;
+      width: 100px;
+      height: 50px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+      background-color: #fff;
+      font-size: 14px;
+      cursor: pointer
+    }
+
+    #btn-back.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  </style>
+</head>
+<body>
+  <span id="btn-back">回到顶部</span>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <div></div>
+  <script>
+    const $ = s => document.querySelector(s)
+    document.addEventListener('scroll', function(e) {
+      if(window.scrollY > 600) {
+        $('#btn-back').classList.add('show')
+      }
+      else {
+        $('#btn-back').classList.remove('show')
+      }
+    })
+    $('#btn-back').addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+      })
+    })
+  </script>
+</body>
+</html>
