@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mock Demo</title> 
+</head>
+<body>
+  <div class="personInfo">
+    <div class="name">
+      <span>姓名: </span>
+    </div>
+    <div class="age">
+      <span>年龄: </span>
+    </div>
+    <div class="address">
+      <span>地址: </span>
+    </div>
+  </div>
+  <script>
+    const $ = s => document.querySelector(s)
+    let url = 'http://127.0.0.1:8080/getPersonInfo?uid=12345'
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', url, true)
+    xhr.onload = function() {
+      if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+        let data = JSON.parse(xhr.responseText)
+        let $name = document.createTextNode(data.name)
+        let $age = document.createTextNode(data.age)
+        let $address = document.createTextNode(data.address)
+        $('.name').appendChild($name)
+        $('.age').appendChild($age)
+        $('.address').appendChild($address)
+      }
+      else {
+        console.log('error, status code: ' + xhr.status)
+      }
+    }
+    xhr.send()
+  </script>
+</body>
+</html>
