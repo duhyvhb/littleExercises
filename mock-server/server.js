@@ -4,6 +4,7 @@ const url = require('url')
 
 const server = http.createServer((req, res) => {
   const pathObj = url.parse(req.url, true)
+  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500')
   switch(pathObj.pathname){
     case '/getPersonInfo':
       if(pathObj.query.uid === '12345') {
